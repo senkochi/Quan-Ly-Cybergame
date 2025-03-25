@@ -1,6 +1,7 @@
 
 package com.senko.cybergamemanagementsystem.view.stuffs;
 
+import com.senko.cybergamemanagementsystem.view.event.EventMenuSelected;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,11 @@ public class ListMenu<E extends Object> extends JList<E> {
     private DefaultListModel model;
     private int selectedMenu = -1;
     private int hoveredMenu = -1;
+    private EventMenuSelected event;
+    
+    public void addEventMenuSelected(EventMenuSelected event){
+        this.event = event;
+    }
     
     public ListMenu(){
         model = new DefaultListModel();
@@ -25,6 +31,9 @@ public class ListMenu<E extends Object> extends JList<E> {
                 Object obj = model.getElementAt(index);
                 if(obj instanceof String){
                     selectedMenu = index;
+                    if(event!=null){
+                       event.selected(index);
+                    }
                 }
                 else {
                     selectedMenu = index;

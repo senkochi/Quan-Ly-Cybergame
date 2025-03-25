@@ -1,6 +1,7 @@
 
 package com.senko.cybergamemanagementsystem.view.component;
 
+import com.senko.cybergamemanagementsystem.view.event.EventMenuSelected;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -9,11 +10,16 @@ import java.awt.RenderingHints;
 
 
 public class Menu extends javax.swing.JPanel {
-
+    private EventMenuSelected event;
+    
+    public void addEventMenuSelected(EventMenuSelected event){
+        this.event = event;
+        listMenu1.addEventMenuSelected(event);
+    }
     
     public Menu() {
         initComponents();
-        listMenu1.addItem("Dummy");
+        listMenu1.addItem("Phòng máy");
         listMenu1.addItem("Dummy");
         listMenu1.addItem("Dummy");
         listMenu1.addItem("Dummy");
