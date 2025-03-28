@@ -5,9 +5,9 @@ public class MayTinh {
     
     private String maMay;
     private String maPhong;
-    private int trangThaiMay;
+    private boolean trangThaiMay;
 
-    public MayTinh(String maMay, String maPhong, int trangThaiMay) {
+    public MayTinh(String maMay, String maPhong, boolean trangThaiMay) {
         this.maMay = maMay;
         this.maPhong = maPhong;
         this.trangThaiMay = trangThaiMay;
@@ -31,11 +31,11 @@ public class MayTinh {
         this.maPhong = maPhong;
     }
 
-    public int getTrangThaiMay() {
+    public boolean getTrangThaiMay() {
         return trangThaiMay;
     }
 
-    public void setTrangThaiMay(int trangThaiMay) {
+    public void setTrangThaiMay(boolean trangThaiMay) {
         this.trangThaiMay = trangThaiMay;
     }
     
