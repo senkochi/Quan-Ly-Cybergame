@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" pref="788" max="32767" attributes="0"/>
           <Component id="functionBar" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -25,7 +25,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="functionBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="412" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,6 +90,10 @@
                   <Component id="themPhienChoiButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="ketThucPhienChoiButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="baoTriButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="hetBaoTriButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -101,6 +105,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="themPhienChoiButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ketThucPhienChoiButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="baoTriButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="hetBaoTriButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -120,6 +126,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="K&#x1ebf;t th&#xfa;c"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ketThucPhienChoiButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="baoTriButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B&#x1ea3;o tr&#xec;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="baoTriButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="hetBaoTriButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="H&#x1ebf;t b&#x1ea3;o tr&#xec;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hetBaoTriButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -110,18 +111,78 @@ public class MayTinhTable extends JTable {
     }
     
     public void themMayTinh(MayTinh mt, String username){
+        try{
         Object[] obj = {mt.getMaMay(),mt.getMaPhong(),mt.getTrangThaiMay(),username,null};
         DefaultTableModel model = (DefaultTableModel) getModel();
         model.addRow(obj);
+        }
+        catch(NullPointerException ex){
+            JOptionPane.showConfirmDialog(null,"Chua chon may kia thang lol","Thông báo", JOptionPane.PLAIN_MESSAGE);
+        }
     }
     
-    public void themPhienChoi(String username){
+    public void thayDoiMay(String username){
+        
         DefaultTableModel mainModel = (DefaultTableModel) model;
         DefaultTableModel subModel = (DefaultTableModel) getModel();
+        mainModel.setValueAt(false, getSelectedRow(), 2);
+        subModel.setValueAt(false, getSelectedRow(), 2);
         mainModel.setValueAt(username, getSelectedRow(), 3);
         subModel.setValueAt(username, getSelectedRow(), 3);
         mainModel.setValueAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), getSelectedRow(), 4);
         subModel.setValueAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), getSelectedRow(), 4);
+        
+    }
+    
+    public void baoTriMay(){
+        DefaultTableModel mainModel = (DefaultTableModel) model;
+        DefaultTableModel subModel = (DefaultTableModel) getModel();
+        mainModel.setValueAt(false, getSelectedRow(), 2);
+        subModel.setValueAt(false, getSelectedRow(), 2);
+        mainModel.setValueAt("ĐANG BẢO TRÌ#", getSelectedRow(), 3);
+        subModel.setValueAt("ĐANG BẢO TRÌ", getSelectedRow(), 3);
+        mainModel.setValueAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), getSelectedRow(), 4);
+        subModel.setValueAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")), getSelectedRow(), 4);
+    }
+    
+    public void ketThucPhienChoi(){
+        DefaultTableModel mainModel = (DefaultTableModel) model;
+        DefaultTableModel subModel = (DefaultTableModel) getModel();
+        mainModel.setValueAt(true, getSelectedRow(), 2);
+        subModel.setValueAt(true, getSelectedRow(), 2);
+        mainModel.setValueAt("n/a", getSelectedRow(), 3);
+        subModel.setValueAt("n/a", getSelectedRow(), 3);
+        mainModel.setValueAt(null, getSelectedRow(), 4);
+        subModel.setValueAt(null, getSelectedRow(), 4);
+    }
+    
+    public void ketThucBaoTri(){
+        
+        DefaultTableModel mainModel = (DefaultTableModel) model;
+        DefaultTableModel subModel = (DefaultTableModel) getModel();
+        Object obj = subModel.getValueAt(getSelectedRow(), 3);
+        if(obj instanceof String){
+            String text = (String) obj;
+            if(text.equals("ĐANG BẢO TRÌ")){
+                mainModel.setValueAt(true, getSelectedRow(), 2);
+                subModel.setValueAt(true, getSelectedRow(), 2);
+                mainModel.setValueAt("n/a", getSelectedRow(), 3);
+                subModel.setValueAt("n/a", getSelectedRow(), 3);
+                mainModel.setValueAt(null, getSelectedRow(), 4);
+                subModel.setValueAt(null, getSelectedRow(), 4);
+            }
+        }
+        
+    }
+    
+    public boolean getCurrentRowStatus(){
+        DefaultTableModel model = (DefaultTableModel) getModel();
+        return (boolean)model.getValueAt(getSelectedRow(), 2);
+    }
+    
+    public boolean isBaoTri(){
+        DefaultTableModel model = (DefaultTableModel) getModel();
+        return ((String)model.getValueAt(getSelectedRow(), 3)).equals("ĐANG BẢO TRÌ");
     }
 }
     

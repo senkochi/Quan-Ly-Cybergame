@@ -6,6 +6,7 @@ import com.senko.cybergamemanagementsystem.view.model.PhongMay;
 import com.senko.cybergamemanagementsystem.view.stuffs.MayTinhTable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 
@@ -57,6 +58,8 @@ public class PhongMayForm extends javax.swing.JPanel {
         functionBar = new javax.swing.JPanel();
         themPhienChoiButton = new javax.swing.JButton();
         ketThucPhienChoiButton = new javax.swing.JButton();
+        baoTriButton = new javax.swing.JButton();
+        hetBaoTriButton = new javax.swing.JButton();
 
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -79,6 +82,25 @@ public class PhongMayForm extends javax.swing.JPanel {
         });
 
         ketThucPhienChoiButton.setText("Kết thúc");
+        ketThucPhienChoiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ketThucPhienChoiButtonActionPerformed(evt);
+            }
+        });
+
+        baoTriButton.setText("Bảo trì");
+        baoTriButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                baoTriButtonActionPerformed(evt);
+            }
+        });
+
+        hetBaoTriButton.setText("Hết bảo trì");
+        hetBaoTriButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hetBaoTriButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout functionBarLayout = new javax.swing.GroupLayout(functionBar);
         functionBar.setLayout(functionBarLayout);
@@ -89,6 +111,10 @@ public class PhongMayForm extends javax.swing.JPanel {
                 .addComponent(themPhienChoiButton)
                 .addGap(18, 18, 18)
                 .addComponent(ketThucPhienChoiButton)
+                .addGap(51, 51, 51)
+                .addComponent(baoTriButton)
+                .addGap(18, 18, 18)
+                .addComponent(hetBaoTriButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         functionBarLayout.setVerticalGroup(
@@ -97,7 +123,9 @@ public class PhongMayForm extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(functionBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(themPhienChoiButton)
-                    .addComponent(ketThucPhienChoiButton))
+                    .addComponent(ketThucPhienChoiButton)
+                    .addComponent(baoTriButton)
+                    .addComponent(hetBaoTriButton))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -105,7 +133,7 @@ public class PhongMayForm extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
             .addComponent(functionBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -113,29 +141,59 @@ public class PhongMayForm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(functionBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void themPhienChoiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themPhienChoiButtonActionPerformed
         // TODO add your handling code here:
+        if(getCurrentTable().getCurrentRowStatus()==true){
         ThemPhienChoiDialog dialog = new ThemPhienChoiDialog(null,true);
-        if(jTabbedPane1.getSelectedIndex()==0){
-            dialog.setTable(thuongTable);
-        }
-        else if(jTabbedPane1.getSelectedIndex()==1){
-            dialog.setTable(vipTable);
-        }
+        dialog.setTable(getCurrentTable());
+        dialog.setVisible(true);}
         else{
-            dialog.setTable(streamTable);
+            JOptionPane.showConfirmDialog(null,"Lỗi rồi cc","Thông báo", JOptionPane.PLAIN_MESSAGE);
         }
-        
-        dialog.setVisible(true);
     }//GEN-LAST:event_themPhienChoiButtonActionPerformed
 
+    private void baoTriButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baoTriButtonActionPerformed
+        // TODO add your handling code here:
+        if(getCurrentTable().getCurrentRowStatus()==true){
+        getCurrentTable().baoTriMay();
+        }
+        else{
+            JOptionPane.showConfirmDialog(null,"Lỗi rồi cc","Thông báo", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_baoTriButtonActionPerformed
+
+    private void hetBaoTriButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hetBaoTriButtonActionPerformed
+        // TODO add your handling code here:
+        if(getCurrentTable().isBaoTri())
+        getCurrentTable().ketThucBaoTri();
+    }//GEN-LAST:event_hetBaoTriButtonActionPerformed
+
+    private void ketThucPhienChoiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketThucPhienChoiButtonActionPerformed
+        // TODO add your handling code here:
+        if(!getCurrentTable().isBaoTri()){
+        getCurrentTable().ketThucPhienChoi();
+        JOptionPane.showConfirmDialog(null,"Kết thúc phiên chơi thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_ketThucPhienChoiButtonActionPerformed
+
+    public MayTinhTable getCurrentTable(){
+        if(jTabbedPane1.getSelectedIndex()==0){
+            return thuongTable;
+        }
+        if(jTabbedPane1.getSelectedIndex()==1){
+            return vipTable;
+        }
+        return streamTable;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton baoTriButton;
     private javax.swing.JPanel functionBar;
+    private javax.swing.JButton hetBaoTriButton;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton ketThucPhienChoiButton;
     private javax.swing.JPanel phongStreamPanel;

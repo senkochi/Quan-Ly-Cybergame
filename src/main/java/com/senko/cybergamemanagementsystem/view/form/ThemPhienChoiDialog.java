@@ -113,14 +113,17 @@ public class ThemPhienChoiDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
             try{
-                table.themPhienChoi(jTextField1.getText());
+                if(!jTextField1.getText().equals("")){
+                table.thayDoiMay(jTextField1.getText());
                 table.repaint();
                 table.revalidate();
-                JOptionPane.showConfirmDialog(null,"Thêm thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showConfirmDialog(null,"Thêm phiên chơi thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
                 ThemPhienChoiDialog.this.dispose();
+                }
             }
-            catch(NumberFormatException err){
-                JOptionPane.showConfirmDialog(null,"Nhap lai di thang lol","Thông báo", JOptionPane.PLAIN_MESSAGE);
+            catch(ArrayIndexOutOfBoundsException ex){
+                JOptionPane.showConfirmDialog(null,"Chua chon may kia thang lol","Thông báo", JOptionPane.PLAIN_MESSAGE);
+                ThemPhienChoiDialog.this.dispose();
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
