@@ -1,16 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package com.senko.cybergamemanagementsystem;
 
-/**
- *
- * @author PC
- */
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.senko.cybergamemanagementsystem.view.Main;
+import javax.swing.UIManager;
+
+
 public class CybergameManagementSystem {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
+        
+        Main main = new Main();
+        main.setVisible(true);
     }
 }
