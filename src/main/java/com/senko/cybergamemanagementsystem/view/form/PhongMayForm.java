@@ -1,11 +1,6 @@
 
 package com.senko.cybergamemanagementsystem.view.form;
-
-import com.senko.cybergamemanagementsystem.view.model.MayTinh;
-import com.senko.cybergamemanagementsystem.view.model.PhongMay;
 import com.senko.cybergamemanagementsystem.view.stuffs.MayTinhTable;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
@@ -17,7 +12,7 @@ public class PhongMayForm extends javax.swing.JPanel {
 
     public PhongMayForm() {
         initComponents();
-        initMayTinhTable();
+        
         thuongTable = new  MayTinhTable(0);
         vipTable = new MayTinhTable(1);
         streamTable = new MayTinhTable(2);
@@ -29,22 +24,6 @@ public class PhongMayForm extends javax.swing.JPanel {
        
     }
     
-    public void initMayTinhTable(){
-//        mayTinhTable1.themMayTinh(new MayTinh("MT01","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT02","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT03","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT04","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT05","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT06","PH01",true),"n/a");
-//        mayTinhTable1.themMayTinh(new MayTinh("MT07","PH01",true),"n/a");
-//        mayTinhTable2.themMayTinh(new MayTinh("MT08","PH01",true),"n/a");
-//        mayTinhTable2.themMayTinh(new MayTinh("MT09","PH01",true),"n/a");
-//        mayTinhTable2.themMayTinh(new MayTinh("MT10","PH01",true),"n/a");
-//        mayTinhTable2.themMayTinh(new MayTinh("MT11","PH01",true),"n/a");
-//        mayTinhTable3.themMayTinh(new MayTinh("MT12","PH01",true),"n/a");
-//        mayTinhTable3.themMayTinh(new MayTinh("MT13","PH01",true),"n/a");
-          
-    }
 
 
     @SuppressWarnings("unchecked")

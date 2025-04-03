@@ -20,8 +20,8 @@ public class Menu extends javax.swing.JPanel {
     public Menu() {
         initComponents();
         listMenu1.addItem("Phòng máy");
-        listMenu1.addItem("Dummy");
-        listMenu1.addItem("Dummy");
+        listMenu1.addItem("Khách hàng");
+        listMenu1.addItem("Nhân viên");
         listMenu1.addItem("Dummy");
         listMenu1.addItem("Dummy");
         

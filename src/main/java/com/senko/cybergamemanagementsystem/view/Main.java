@@ -3,8 +3,8 @@ package com.senko.cybergamemanagementsystem.view;
 
 import com.senko.cybergamemanagementsystem.view.event.EventMenuSelected;
 import com.senko.cybergamemanagementsystem.view.form.PhongMayForm;
-import com.senko.cybergamemanagementsystem.view.form.newForm1;
-import com.senko.cybergamemanagementsystem.view.form.newForm2;
+import com.senko.cybergamemanagementsystem.view.form.KhachHangForm;
+import com.senko.cybergamemanagementsystem.view.form.NhanVienForm;
 import javax.swing.JComponent;
 
 
@@ -21,10 +21,10 @@ public class Main extends javax.swing.JFrame {
                     System.out.print(index);
                 }
                 else if(index==1){
-                     addForm(new newForm1());
+                     addForm(new KhachHangForm());
                 }
                 else{
-                     addForm(new newForm2());
+                     addForm(new NhanVienForm());
                 }
             }   
         });

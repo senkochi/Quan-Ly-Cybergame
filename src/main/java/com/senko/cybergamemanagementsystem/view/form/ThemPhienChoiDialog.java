@@ -148,14 +148,6 @@ public class ThemPhienChoiDialog extends javax.swing.JDialog {
             }
         });
     }
-    
-    public String getUsername(){
-        return jTextField1.getText();
-    }
-    
-    public String getMaMay(){
-        return jTextField2.getText();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
