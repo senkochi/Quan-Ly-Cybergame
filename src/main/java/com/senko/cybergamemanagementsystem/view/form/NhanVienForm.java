@@ -40,6 +40,11 @@ public class NhanVienForm extends javax.swing.JPanel {
         jPanel1.add(jButton2);
 
         jButton3.setText("Sửa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
 
         jScrollPane1.setViewportView(nhanVienTable1);
@@ -72,6 +77,16 @@ public class NhanVienForm extends javax.swing.JPanel {
         nhanVienTable1.xoaNhanVien();
         JOptionPane.showConfirmDialog(null,"Xóa nhân viên thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ThemNhanVienDialog dialog = new ThemNhanVienDialog(null,true);
+        dialog.setTable(nhanVienTable1);
+        dialog.setEditing(true);
+        dialog.initEdit(nhanVienTable1.getTextItem(1), nhanVienTable1.getTextItem(2), nhanVienTable1.getTextItem(3),
+                nhanVienTable1.getTextItem(4), nhanVienTable1.getTextItem(6));
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

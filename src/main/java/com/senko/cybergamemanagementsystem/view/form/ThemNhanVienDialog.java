@@ -1,8 +1,7 @@
 
 package com.senko.cybergamemanagementsystem.view.form;
 
-import com.senko.cybergamemanagementsystem.view.model.NhanVien;
-import com.senko.cybergamemanagementsystem.view.stuffs.KhachHangTable;
+import com.senko.cybergamemanagementsystem.model.entities.NhanVien;
 import com.senko.cybergamemanagementsystem.view.stuffs.NhanVienTable;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
@@ -10,6 +9,11 @@ import javax.swing.JOptionPane;
 
 public class ThemNhanVienDialog extends javax.swing.JDialog {
     private NhanVienTable table;
+    private boolean isEditing;
+    
+    public void setEditing(boolean isEditing){
+        this.isEditing = isEditing;
+    }
     
     public void setTable(NhanVienTable table){
         this.table = table;
@@ -30,7 +34,6 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
         tenNhanVienField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
         passwordField = new javax.swing.JTextField();
-        maNhanVienField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         viTriField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -48,8 +51,6 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
         usernameField.setText("Username");
 
         passwordField.setText("Password");
-
-        maNhanVienField.setText("Mã nhân viên");
 
         emailField.setText("Email");
 
@@ -72,7 +73,6 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viTriField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maNhanVienField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tenNhanVienField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -85,11 +85,9 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(61, 61, 61)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(maNhanVienField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
                 .addComponent(tenNhanVienField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,7 +99,7 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
                 .addComponent(viTriField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,15 +107,31 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        table.themNhanVien(new NhanVien(maNhanVienField.getText(),tenNhanVienField.getText(),
-                                        usernameField.getText(),passwordField.getText(),emailField.getText(),
-                                        true,viTriField.getText(),LocalDate.now()));
-        table.repaint();
-        table.revalidate();
-        JOptionPane.showConfirmDialog(null,"Thêm nhân viên thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
-        ThemNhanVienDialog.this.dispose();
+        if(!isEditing){
+            table.themNhanVien(tenNhanVienField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),viTriField.getText());;
+            table.repaint();
+            table.revalidate();
+            JOptionPane.showConfirmDialog(null,"Thêm nhân viên thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+            ThemNhanVienDialog.this.dispose();
+        }
+        else{
+            table.capNhatNhanVien(tenNhanVienField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),viTriField.getText());;
+            table.repaint();
+            table.revalidate();
+            JOptionPane.showConfirmDialog(null,"Cập nhật nhân viên thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+            ThemNhanVienDialog.this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void initEdit(String tenNhanVien, String userName, String password, String email, String viTri){
+        tenNhanVienField.setText(tenNhanVien);
+        usernameField.setText(userName);
+        passwordField.setText(password);
+        emailField.setText(email);
+        viTriField.setText(viTri);
+        repaint();
+        revalidate();
+    }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -139,7 +153,6 @@ public class ThemNhanVienDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField maNhanVienField;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField tenNhanVienField;
     private javax.swing.JTextField usernameField;

@@ -1,5 +1,5 @@
 
-package com.senko.cybergamemanagementsystem.view.model;
+package com.senko.cybergamemanagementsystem.model.entities;
 
 
 public class KhachHang {

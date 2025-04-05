@@ -1,8 +1,8 @@
 
 package com.senko.cybergamemanagementsystem.view.stuffs;
 
-import com.senko.cybergamemanagementsystem.view.model.MayTinh;
-import com.senko.cybergamemanagementsystem.view.model.PhongMay;
+import com.senko.cybergamemanagementsystem.model.entities.MayTinh;
+import com.senko.cybergamemanagementsystem.model.entities.PhongMay;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;

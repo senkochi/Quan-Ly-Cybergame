@@ -1,7 +1,8 @@
 
 package com.senko.cybergamemanagementsystem.view.stuffs;
 
-import com.senko.cybergamemanagementsystem.view.model.NhanVien;
+import com.senko.cybergamemanagementsystem.controller.NhanVienController;
+import com.senko.cybergamemanagementsystem.model.entities.NhanVien;
 import java.awt.Component;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.CENTER;
@@ -11,15 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class NhanVienTable extends JTable {
     private DefaultTableModel model;
+    private NhanVienController controller = new NhanVienController();
     
-    Object[][] data = {
-        {"NV01", "Hồ Minh Đạt", "dat09", "123", "dathm@gmail.com", true, "Hốc trưởng",2025-04-10},
-        {"NV02", "Vũ Nhật Hà", "summersun", "123", "havn@gmail.com", true, "Quản lí",2025-04-11},
-        {"NV03", "Nguyễn Hùng Cường", "cuongg", "123", "cuonggnh@gmail.com", true, "Quản lí",2025-04-10},
-        {"NV04", "Nguyễn Hoàng Thạch", "khaithienphathach", "123", "thachnh@gmail.com", true, "Đầu bếp",2025-04-10},
-        {"KH05", "Huỳnh Quang Minh Quân", "haoquangrucro", "123", "quanhqm@gmail.com", true, "Nhân viên",2025-04-19},
-        {"KH06", "Nguyễn Minh Đức", "duccop", "123", "ducnm@gmail.com", false,"Nhân viên",2025-04-19}
-    };
+    Object[][] data = controller.getNhanVienFromModel();
     
     String[] columns = {"Mã nhân viên","Họ và tên","Username","Password","Email","Trạng thái","Vị trí","Ngày vào làm"};
     
@@ -67,14 +62,31 @@ public class NhanVienTable extends JTable {
             }
         });
     }
-    public void themNhanVien(NhanVien nv){
-        Object[] obj = {nv.getMaNhanVien(),nv.getHoVaTen(),nv.getUserName(),nv.getPassWord(),nv.getEmail(),true,nv.getMaViTri(),nv.getNgayVaoLam()};
-        DefaultTableModel model = (DefaultTableModel) getModel();
-        model.addRow(obj);
+    
+    public void refresh(){
+        Object[][] data = controller.getNhanVienFromModel();
+        model = new DefaultTableModel(data,columns);
+        setModel(model);
+    }
+    public void themNhanVien(String hoVaTen, String username, String password, String email, String viTri){
+        //Object[] obj = {nv.getMaNhanVien(),nv.getHoVaTen(),nv.getUserName(),nv.getPassWord(),nv.getEmail(),true,nv.getViTri(),nv.getNgayVaoLam()};
+        controller.themNhanVien(hoVaTen, username, password, email, viTri);
+        refresh();
     }
     
     public void xoaNhanVien(){
-        DefaultTableModel model = (DefaultTableModel) this.getModel();
-        model.removeRow(getSelectedRow());
+        int maNhanVien = Integer.valueOf((String)model.getValueAt(getSelectedRow(), 0));
+        controller.xoaNhanVien(maNhanVien);
+        refresh();
+    }
+    
+    public void capNhatNhanVien(String hoVaTen, String username, String password, String email, String viTri){
+        int maNhanVien = Integer.valueOf((String)model.getValueAt(getSelectedRow(), 0));
+        controller.capNhatNhanVien(maNhanVien, hoVaTen, username, password, email, viTri);
+        refresh();
+    }
+    
+    public String getTextItem(int index){
+        return model.getValueAt(getSelectedRow(), index)+"";
     }
 }

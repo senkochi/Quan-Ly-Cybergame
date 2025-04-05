@@ -1,15 +1,20 @@
 
 package com.senko.cybergamemanagementsystem.view.form;
 
-import com.senko.cybergamemanagementsystem.view.model.KhachHang;
+import com.senko.cybergamemanagementsystem.model.entities.KhachHang;
 import com.senko.cybergamemanagementsystem.view.stuffs.KhachHangTable;
 import javax.swing.JOptionPane;
 
 public class ThemKhachHangDialog extends javax.swing.JDialog {
     private KhachHangTable table;
+    private boolean isEditing; 
     
     public void setTable(KhachHangTable table){
         this.table = table;
+    }
+    
+    public void setEditing(boolean isEditing){
+        this.isEditing = isEditing;
     }
     
     public ThemKhachHangDialog(java.awt.Frame parent, boolean modal) {
@@ -119,18 +124,31 @@ public class ThemKhachHangDialog extends javax.swing.JDialog {
 
     private void themKhachHangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themKhachHangButtonActionPerformed
         // TODO add your handling code here:
-        
-        table.themKhach(new KhachHang(maKhachField.getText(),tenKhachField.getText(),
-                tenDangNhapField.getText(),matKhauField.getText(),emailField.getText(),true));
-        table.repaint();
-        table.revalidate();
-        JOptionPane.showConfirmDialog(null,"Thêm khách hàng thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
-        ThemKhachHangDialog.this.dispose();
+        if(!isEditing){
+            table.themKhach(new KhachHang(maKhachField.getText(),tenKhachField.getText(),
+                    tenDangNhapField.getText(),matKhauField.getText(),emailField.getText(),true));
+            table.repaint();
+            table.revalidate();
+            JOptionPane.showConfirmDialog(null,"Thêm khách hàng thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+            ThemKhachHangDialog.this.dispose();
+        }
+        else {
+            table.suaKhach(new KhachHang(maKhachField.getText(),tenKhachField.getText(),
+                    tenDangNhapField.getText(),matKhauField.getText(),emailField.getText(),true));
+            table.repaint();
+            table.revalidate();
+            JOptionPane.showConfirmDialog(null,"Cập nhật khách hàng thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
+            ThemKhachHangDialog.this.dispose();
+        }
     }//GEN-LAST:event_themKhachHangButtonActionPerformed
 
     public void initEdit(){
         Object[] obj = table.getItemAt(table.getSelectedRow());
-        
+        this.maKhachField.setText((String)obj[0]);
+        this.tenKhachField.setText((String)obj[1]);
+        this.tenDangNhapField.setText((String)obj[2]);
+        this.matKhauField.setText(String.valueOf(obj[3]));
+        this.emailField.setText(String.valueOf(obj[3]));
     }
     
     public static void main(String args[]) {

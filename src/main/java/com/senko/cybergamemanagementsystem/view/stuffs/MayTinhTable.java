@@ -1,7 +1,7 @@
 
 package com.senko.cybergamemanagementsystem.view.stuffs;
 
-import com.senko.cybergamemanagementsystem.view.model.MayTinh;
+import com.senko.cybergamemanagementsystem.model.entities.MayTinh;
 import java.awt.Color;
 import java.awt.Component;
 import java.time.LocalDateTime;

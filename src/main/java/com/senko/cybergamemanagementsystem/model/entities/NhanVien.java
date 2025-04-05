@@ -1,5 +1,5 @@
 
-package com.senko.cybergamemanagementsystem.view.model;
+package com.senko.cybergamemanagementsystem.model.entities;
 
 import java.time.LocalDate;
 
@@ -33,11 +33,11 @@ public class NhanVien {
         this.maNhanVien = maNhanVien;
     }
 
-    public String getMaViTri() {
+    public String getViTri() {
         return viTri;
     }
 
-    public void setMaViTri(String viTri) {
+    public void setViTri(String viTri) {
         this.viTri = viTri;
     }
 

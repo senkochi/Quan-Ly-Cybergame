@@ -2,7 +2,7 @@
 package com.senko.cybergamemanagementsystem.view.stuffs;
 
 import com.senko.cybergamemanagementsystem.view.form.ThemKhachHangDialog;
-import com.senko.cybergamemanagementsystem.view.model.KhachHang;
+import com.senko.cybergamemanagementsystem.model.entities.KhachHang;
 import java.awt.Component;
 import javax.swing.JDialog;
 import javax.swing.JTable;

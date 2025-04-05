@@ -4,7 +4,7 @@ package com.senko.cybergamemanagementsystem.view.form;
 import javax.swing.JOptionPane;
 
 public class KhachHangForm extends javax.swing.JPanel {
-
+    
     
     public KhachHangForm() {
         initComponents();
@@ -42,6 +42,11 @@ public class KhachHangForm extends javax.swing.JPanel {
         panelBorder1.add(xoaKhachHang);
 
         jButton1.setText("Sửa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         panelBorder1.add(jButton1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -72,6 +77,17 @@ public class KhachHangForm extends javax.swing.JPanel {
         khachHangTable1.xoaKhach();
         JOptionPane.showConfirmDialog(null,"Xóa khách hàng thành công","Thông báo", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_xoaKhachHangActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ThemKhachHangDialog dialog = new ThemKhachHangDialog(null,true);
+                dialog.setEditing(true);
+                dialog.setTable(khachHangTable1);
+                dialog.initEdit();
+                dialog.setVisible(true);
+                dialog.repaint();
+                dialog.revalidate();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
